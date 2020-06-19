@@ -1,5 +1,6 @@
 import api from '../../../services/api';
 import { call, put, all, takeLatest, select } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import { addToCartSuccess, updateAmount } from './actions';
 
@@ -17,7 +18,8 @@ function* addToCart({ id }) {
   const amount = currentAmount + 1;
 
   if(amount > stockAmount) {
-    console.tron.warn('ERRO');
+    // console.tron.warn('ERRO');
+    toast.error('Quantidade solicitada fora de estoque')
     return;
   }
 
